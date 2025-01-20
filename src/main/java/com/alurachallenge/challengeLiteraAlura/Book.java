@@ -1,5 +1,6 @@
 package com.alurachallenge.challengeLiteraAlura;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -7,8 +8,11 @@ import jakarta.persistence.Id;
 public class Book {
 
     @Id
+    @Column (nullable = false)
     private String title;
+    @Column (nullable = false)
     private String author;
+    @Column (nullable = false)
     private String language;
 
     public Book() {}

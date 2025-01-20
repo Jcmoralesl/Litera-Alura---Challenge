@@ -21,8 +21,8 @@ public class GutendexService {
     //Buscar libro por titulo
 
     public List<Book> searchBookByTitle(String title) {
-        String url = API_URL + "?serach=" + title;
-        JsonArray booksArray = getBooksFromApi (url);
+        String url = API_URL + "?search=" + title;
+        JsonArray booksArray = getBooksFromApi(url);
         List<Book> books = new ArrayList<>();
 
         for (int i = 0; i < booksArray.size(); i++) {
@@ -41,23 +41,25 @@ public class GutendexService {
             }
         }
 
-        return  books;
+        return books;
     }
 
-    public List <Book> listRegisterdBooks () {
+    public List<Book> listRegisterdBooks() {
         return bookRepository.findAll();
     }
 
     //listar libro por idioma
 
-    public List <Book> listBooksByLanguage (String language) {
+    public List<Book> listBooksByLanguage(String language) {
         return bookRepository.findByLanguage(language);
     }
 
-    private JsonArray getBooksFromApi (String url) {
+    private JsonArray getBooksFromApi(String url) {
         String jsonResponse = restTemplate.getForObject(url, String.class);
+        System.out.println("API response:" + jsonResponse);
+
         JsonObject jsonObject = new JsonObject();
         return jsonObject.getAsJsonArray("results");
     }
-
 }
+
